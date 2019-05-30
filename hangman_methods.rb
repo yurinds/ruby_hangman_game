@@ -5,7 +5,7 @@ end
 
 # Получаем слово для игры
 def get_letters
-  word = 'ёжик'
+  word = ARGV[0]
 
   if [nil, ''].include?(word)
     puts 'Введите слово в качестве параметра при запуске программы'
