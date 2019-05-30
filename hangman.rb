@@ -10,7 +10,10 @@ letters = get_letters
 
 program_params = { letters: letters, errors: 0, good_letters: [], bad_letters: [] }
 
+errors = program_params[:errors]
+
 while errors < 7
+
   print_status(program_params)
 
   puts

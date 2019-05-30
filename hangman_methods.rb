@@ -19,6 +19,8 @@ def get_user_input
   letter = ''
 
   letter = STDIN.gets.strip while letter == ''
+
+  letter
 end
 
 def check_user_input(user_input, params)
@@ -55,22 +57,32 @@ def get_letters_for_print(params)
                 '__ '
               end
   end
+
+  result
 end
 
 def print_status(params)
+  good_letters = params[:good_letters]
+  bad_letters  = params[:bad_letters]
+  letters      = params[:letters]
+  errors       = params[:errors]
+
+  cls
+
+  puts 'Игра виселица.'
   puts
   puts "Слово: #{get_letters_for_print(params)}"
 
-  puts "Ошибки (#{params[:errors]}): #{params[:bad_letters].join(', ')}"
+  puts "Ошибки (#{errors}): #{bad_letters.join(', ')}"
 
-  if params[:errors] >= 7
+  if errors >= 7
     puts 'Попытки закончились. Вы проиграли!'
   else
-    if params[:good_letters].uniq.sort == params[:letters].uniq.sort
+    if good_letters.uniq.sort == letters.uniq.sort
       puts 'Вы выиграли!'
       puts
     else
-      puts "У вас осталось попыток: #{(7 - params[:errors])}"
+      puts "У вас осталось попыток: #{(7 - errors)}"
     end
   end
 end
