@@ -5,20 +5,33 @@ end
 
 # Получаем слово для игры
 def get_letters
-  word = ARGV[0]
+  word = 'ёжик'
 
   if [nil, ''].include?(word)
     puts 'Введите слово в качестве параметра при запуске программы'
     exit
   end
 
-  word.split('') # разбиваем слово на массив букв
+  correct_letters = { 'Ё' => 'Е', 'Й' => 'И' }
+
+  best_letters_arr = []
+
+  word.upcase.split('').each do |letter|
+    best_letter = correct_letters[letter] || letter
+    best_word_arr << best_letter
+  end
+
+  best_word_arr
 end
 
 def get_user_input
   letter = ''
 
-  letter = STDIN.gets.strip while letter == ''
+  letter = STDIN.gets.strip.upcase while letter == ''
+
+  correct_letters = { 'Ё' => 'Е', 'Й' => 'И' }
+
+  letter = correct_letters[letter] if correct_letters[letter]
 
   letter
 end
@@ -86,3 +99,5 @@ def print_status(params)
     end
   end
 end
+
+get_letters
