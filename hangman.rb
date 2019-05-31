@@ -1,32 +1,24 @@
-require './hangman_methods.rb'
+require './models/game.rb'
+require './models/result_printer.rb'
 
-cls # очистка экрана
+word = ARGV[0]
 
-puts 'Игра виселица.'
-puts
-sleep 1
-
-letters = get_letters
-
-program_params = { letters: letters, errors: 0, good_letters: [], bad_letters: [] }
-
-errors = program_params[:errors]
-
-while errors < 7
-
-  print_status(program_params)
-
-  puts
-  print 'Введите следующую букву: '
-  user_input = get_user_input
-
-  result = check_user_input(user_input, program_params)
-
-  if result == -1
-    program_params[:errors] += 1
-  elsif result == 1
-    break
-  end
+if [nil, ''].include?(word)
+  puts 'Введите слово в качестве параметра при запуске программы'
+  exit
 end
 
-print_status(program_params)
+result_printer = ResultPrinter.new
+game           = Game.new(word)
+
+result_printer.print_status(game)
+
+until [-1, 1].include?(game.status)
+
+  puts game.status
+
+  game.check_user_letter
+
+  result_printer.print_status(game)
+
+end
