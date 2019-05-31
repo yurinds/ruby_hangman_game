@@ -29,18 +29,23 @@ class Game
 
     return if @good_letters.include?(user_letter) || @bad_letters.include?(user_letter) # пользователь ввел уже известный символ
 
-    #     special_letters = if %w[И Й].include?(user_letter)
-    #                         %w[И Й]
-    #                       elsif %w[Е Ё].include?(user_letter)
-    #                         %w[Е Ё]
-    #                       end
-    if @letters.include?(user_letter)
+    special_letters = if %w[И Й].include?(user_letter)
+                        %w[И Й]
+                      elsif %w[Е Ё].include?(user_letter)
+                        %w[Е Ё]
+                      end
+
+    if !special_letters.nil?
+      special_letters.each do |special_letter|
+        @good_letters << special_letter if @letters.include?(special_letter)
+      end
+    elsif @letters.include?(user_letter)
       @good_letters << user_letter
     else
       @bad_letters << user_letter
       @errors += 1
       @status = -1 if @errors >= 7
-    end
+  end
 
     @status = 1 if @good_letters.uniq.size == @letters.uniq.size
   end
