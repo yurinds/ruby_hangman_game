@@ -16,7 +16,7 @@ class Game
 
   def get_next_letter_from_user
     puts
-    print 'Введите следующую букву: '
+    print 'Введите следующую букву:  '
 
     letter = ''
     letter = STDIN.gets.strip.upcase while letter == ''
