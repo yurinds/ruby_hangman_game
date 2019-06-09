@@ -1,5 +1,5 @@
-require_relative './models/game.rb'
-require_relative './models/result_printer.rb'
+require_relative './game.rb'
+require_relative './result_printer.rb'
 
 current_path = File.dirname(__FILE__)
 
