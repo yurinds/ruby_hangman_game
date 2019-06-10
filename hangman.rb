@@ -8,6 +8,7 @@ file_path = current_path + '/data/words.txt'
 if File.exist?(file_path)
   new_file = File.new(file_path, 'r:UTF-8')
   lines = new_file.readlines
+  new_file.close
   abort 'В текстовом файле (./data/words.txt) отсутствуют слова для игры!' if lines.empty?
 else
   puts 'Программа принудительно закрыта. В пути ./data/words.txt отсутствует файл'

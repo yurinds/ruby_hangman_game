@@ -12,6 +12,7 @@ class ResultPrinter
       if File.exist?(file_path)
         new_file = File.new(file_path, 'r:UTF-8')
         @error_images << new_file.read
+        new_file.close
       else
         @error_images << "\n [ изображение не найдено ] \n"
         end
