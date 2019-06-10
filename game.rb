@@ -1,5 +1,5 @@
 class Game
-  attr_reader :status, :good_letters, :bad_letters, :letters, :errors
+  attr_reader :status, :good_letters, :bad_letters, :letters, :errors, :word
 
   def initialize(word)
     @good_letters = []
@@ -7,6 +7,7 @@ class Game
     @letters      = get_letters(word)
     @errors       = 0
     @status       = 0
+    @word         = word
   end
 
   # Получаем слово для игры

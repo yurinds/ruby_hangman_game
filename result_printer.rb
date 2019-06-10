@@ -44,6 +44,8 @@ class ResultPrinter
 
     if game.status == -1
       puts 'Попытки закончились. Вы проиграли!'
+      puts "Загаданное слово: #{game.word.upcase}"
+      puts
     elsif game.status == 1
       puts 'Вы выиграли!'
       puts
