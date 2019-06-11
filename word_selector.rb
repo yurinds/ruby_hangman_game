@@ -10,12 +10,15 @@ class WordSelector
 
     file_path = current_path + '/data/words.txt'
 
-    lines = []
-    if File.exist?(file_path)
+    begin
       new_file = File.new(file_path, 'r:UTF-8')
-      lines = new_file.readlines
-      new_file.close
+    rescue SystemCallError => exception
+      puts 'Не удалось прочитать файл ' + exception.message
+      return nil
     end
+
+    lines = new_file.readlines
+    new_file.close
 
     word = if !lines.empty?
              lines.sample.strip

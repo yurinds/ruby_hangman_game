@@ -7,7 +7,10 @@ selector = WordSelector.new
 word = selector.word
 
 if word == ''
-  puts 'В текстовом файле (./data/words.txt) отсутствуют слова для игры либо файла не существует!'
+  puts 'В текстовом файле (./data/words.txt) отсутствуют слова для игры!'
+  exit
+elsif word.nil?
+  puts 'Не удалось открыть файл (./data/words.txt)!'
   exit
 end
 

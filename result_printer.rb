@@ -5,19 +5,19 @@ class ResultPrinter
     current_path = File.dirname(__FILE__)
     @error_images = []
 
-    x = 0
-    while x <= 7
-      file_path = current_path + "/data/#{x}.txt"
-      puts file_path
-      if File.exist?(file_path)
+    counter = 0
+    while counter <= 7
+      file_path = current_path + "/data/#{counter}.txt"
+
+      begin
         new_file = File.new(file_path, 'r:UTF-8')
         @error_images << new_file.read
         new_file.close
-      else
+      rescue SystemCallError => exception
         @error_images << "\n [ изображение не найдено ] \n"
-        end
+      end
 
-      x += 1
+      counter += 1
     end
   end
 
