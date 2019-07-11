@@ -1,8 +1,11 @@
-require_relative './game.rb'
-require_relative './result_printer.rb'
-require_relative './word_selector.rb'
+require_relative 'lib/game'
+require_relative 'lib/result_printer'
+require_relative 'lib/word_selector'
 
-selector = WordSelector.new
+current_path = File.dirname(__FILE__)
+
+selector = WordSelector.from_file(current_path)
+abort 'Не удалось прочитать слово для игры!' unless selector
 
 word = selector.word
 
@@ -14,16 +17,22 @@ elsif word.nil?
   exit
 end
 
-result_printer = ResultPrinter.new
+result_printer = ResultPrinter.new(current_path)
 game           = Game.new(word)
 
 result_printer.print_status(game)
 
-until [-1, 1].include?(game.status)
+until %i[win loose].include?(game.status)
 
   puts game.status
 
-  game.check_user_letter
+  puts
+  print 'Введите следующую букву:  '
+
+  letter = ''
+  letter = STDIN.gets.strip.upcase while letter == ''
+
+  game.check_user_letter(letter)
 
   result_printer.print_status(game)
 

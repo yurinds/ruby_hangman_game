@@ -1,8 +1,7 @@
 class ResultPrinter
   attr_reader :error_images
 
-  def initialize
-    current_path = File.dirname(__FILE__)
+  def initialize(current_path)
     @error_images = []
 
     counter = 0

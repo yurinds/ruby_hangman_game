@@ -1,12 +1,11 @@
 class WordSelector
   attr_reader :word
 
-  def initialize
-    @word = get_word_from_file
+  def initialize(word)
+    @word = word
   end
 
-  def get_word_from_file
-    current_path = File.dirname(__FILE__)
+  def self.from_file(current_path)
 
     file_path = current_path + '/data/words.txt'
 
@@ -26,6 +25,6 @@ class WordSelector
              ''
            end
 
-    word
+    new(word)
   end
 end
