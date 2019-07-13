@@ -14,10 +14,13 @@ class Game
     @word         = word
   end
 
-  # Получаем слово для игры
+  def max_errors
+    MAX_ERRORS
+  end
+
   def get_letters(word)
     letters = word.split('').map(&:upcase)
- end
+  end
 
   def get_letters_with_special_symbols
     all_letters = []
@@ -28,15 +31,23 @@ class Game
     end
 
     all_letters
- end
+  end
 
   def letter_has_been_entered?(user_letter)
     @good_letters.include?(user_letter) || @bad_letters.include?(user_letter)
- end
+  end
 
   def over?
     %i[win loose].include?(@status)
- end
+  end
+
+  def win?
+    @status == :win
+  end
+
+  def loose?
+    @status == :loose
+  end
 
   def check_user_letter(user_letter)
     return if letter_has_been_entered?(user_letter)
@@ -49,12 +60,12 @@ class Game
     end
 
     set_status
- end
+  end
 
   def set_status
     @status = :loose if @errors >= MAX_ERRORS
     @status = :win if @good_letters.uniq.size == @letters_to_status.uniq.size
- end
+  end
 
   def add_to_good_letters(user_letter)
     @good_letters << user_letter
