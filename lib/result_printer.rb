@@ -35,9 +35,9 @@ class ResultPrinter
     end
 
   def print_status(game)
-    cls
+    # cls
 
-    puts "Слово: #{get_letters_for_print(game.good_letters, game.letters)}"
+    puts "Слово: #{get_letters_for_print(game.good_letters, game.letters_to_show)}"
     puts print_hangman(game.errors)
     puts "Ошибки (#{game.errors}): #{game.bad_letters.join(', ')}"
 

@@ -22,9 +22,7 @@ game           = Game.new(word)
 
 result_printer.print_status(game)
 
-until %i[win loose].include?(game.status)
-
-  puts game.status
+until game.over?
 
   puts
   print 'Введите следующую букву:  '
