@@ -35,7 +35,7 @@ class ResultPrinter
     end
 
     result
-    end
+  end
 
   def print_status(game)
     cls

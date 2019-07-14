@@ -23,7 +23,6 @@ game           = Game.new(word)
 result_printer.print_status(game)
 
 until game.over?
-
   puts
   print 'Введите следующую букву:  '
 
@@ -33,5 +32,4 @@ until game.over?
   game.check_user_letter(letter)
 
   result_printer.print_status(game)
-
 end
