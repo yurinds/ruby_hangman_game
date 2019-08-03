@@ -10,7 +10,7 @@ class Game
     @letters_to_show   = get_letters(word)
     @letters_to_status = get_letters_with_special_symbols
     @errors       = 0
-    @status       = nil
+    @status       = :in_progress
     @word         = word
   end
 
@@ -50,6 +50,7 @@ class Game
   end
 
   def check_user_letter(user_letter)
+    user_letter.upcase!
     return if letter_has_been_entered?(user_letter)
 
     if @letters_to_status.include?(user_letter)

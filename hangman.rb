@@ -27,7 +27,7 @@ until game.over?
   print 'Введите следующую букву:  '
 
   letter = ''
-  letter = STDIN.gets.strip.upcase while letter == ''
+  letter = STDIN.gets.strip while letter == ''
 
   game.check_user_letter(letter)
 
